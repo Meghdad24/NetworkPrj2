@@ -22,19 +22,36 @@ def play_audio(data, samplerate):
 def volume_Increment(data, ratio):
     return data[:,:] * ratio
 
+def volume_Increment_Domain(data, startRatio, endRatio):
+    linspaces = np.array([np.linspace(startRatio, endRatio, len(data[:,0]), True),
+    np.linspace(startRatio, endRatio, len(data[:,0]), True)])
+    output = np.multiply(linspaces.T, data)
+    return output.astype(np.int16)
+
 def main():
-    linear_data = data
-    save_wav('linear_pcm.wav', linear_data, sampling_rate)
-    play_audio(linear_data, sampling_rate)
-    print('Playing Linear PCM')
+    # linear_data = data
+    # save_wav('linear_pcm.wav', linear_data, sampling_rate)
+    # play_audio(linear_data, sampling_rate)
+    # print('Playing Linear PCM')
     
-    incremented_data = volume_Increment(data, 2)
-    play_audio(incremented_data, sampling_rate)
-    save_wav('X2.wav', incremented_data, sampling_rate)
+    # incremented_data = volume_Increment(data, 2)
+    # play_audio(incremented_data, sampling_rate)
+    # save_wav('X2.wav', incremented_data, sampling_rate)
+    # print("X2.wav")
     
-    incremented_data = volume_Increment(data, 4)
-    play_audio(incremented_data, sampling_rate)
-    save_wav('X4.wav', incremented_data, sampling_rate)
+    # incremented_data = volume_Increment(data, 4)
+    # play_audio(incremented_data, sampling_rate)
+    # save_wav('X4.wav', incremented_data, sampling_rate)
+    # print("X4.wav")
+    
+    soft_incremented_data = volume_Increment_Domain(data, -2, 4)
+    play_audio(soft_incremented_data, sampling_rate)
+    plt.figure()
+    plt.plot(soft_incremented_data[:,0])
+    plt.title("channel 1")
+    plt.figure()
+    plt.plot(soft_incremented_data[:,1])
+    plt.title("channel 2")
     
 if __name__ == "__main__":
     main()
