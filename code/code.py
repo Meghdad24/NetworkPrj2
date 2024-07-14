@@ -106,73 +106,73 @@ def main():
     # Save and play linear PCM
     linear_data = data
     save_wav('linear_pcm.wav', linear_data, sampling_rate)
-    play_audio(linear_data, sampling_rate)
+    # play_audio(linear_data, sampling_rate)
     plt.figure()
     plt.plot(data[:, 1])
     plt.title("Linear PCM")
 
     # Volume increment by 2x and 4x
-    incremented_data = volume_increment(data, 2)
-    play_audio(incremented_data, sampling_rate)
-    save_wav('X2.wav', incremented_data, sampling_rate)
-
-    incremented_data = volume_increment(data, 4)
-    play_audio(incremented_data, sampling_rate)
-    save_wav('X4.wav', incremented_data, sampling_rate)
+    # incremented_data = volume_increment(data, 2)
+    # play_audio(incremented_data, sampling_rate)
+    # save_wav('X2.wav', incremented_data, sampling_rate)
+    #
+    # incremented_data = volume_increment(data, 4)
+    # play_audio(incremented_data, sampling_rate)
+    # save_wav('X4.wav', incremented_data, sampling_rate)
 
     # Apply linear volume increment from -2 to 4
     soft_incremented_data = volume_soft_increment(data, -2, 4)
-    play_audio(soft_incremented_data, sampling_rate)
+    # play_audio(soft_incremented_data, sampling_rate)
     save_wav('X_Soft(-2to4).wav', soft_incremented_data, sampling_rate)
 
-    plt.figure()
-    plt.plot(soft_incremented_data[:, 0])
-    plt.title("Channel 1 Soft Increment")
-
-    plt.figure()
-    plt.plot(soft_incremented_data[:, 1])
-    plt.title("Channel 2 Soft Increment")
+    # plt.figure()
+    # plt.plot(soft_incremented_data[:, 0])
+    # plt.title("Channel 1 Soft Increment")
+    #
+    # plt.figure()
+    # plt.plot(soft_incremented_data[:, 1])
+    # plt.title("Channel 2 Soft Increment")
 
     # Apply A-law and Mu-law transformations
-    a_law_data = non_linear_pcm_a_law(soft_incremented_data)
-    play_audio(a_law_data, sampling_rate)
-    plt.figure()
-    plt.plot(a_law_data)
-    plt.title("A-law Transformation")
+    # a_law_data = non_linear_pcm_a_law(soft_incremented_data)
+    # play_audio(a_law_data, sampling_rate)
+    # plt.figure()
+    # plt.plot(a_law_data)
+    # plt.title("A-law Transformation")
 
-    mu_law_data = non_linear_pcm_mu_law(soft_incremented_data)
-    play_audio(mu_law_data, sampling_rate)
-    plt.figure()
-    plt.plot(mu_law_data)
-    plt.title("Mu-law Transformation")
+    # mu_law_data = non_linear_pcm_mu_law(soft_incremented_data)
+    # play_audio(mu_law_data, sampling_rate)
+    # plt.figure()
+    # plt.plot(mu_law_data)
+    # plt.title("Mu-law Transformation")
 
     # Apply Delta modulation
-    delta = delta_modulation(data)
-    plt.figure(figsize=(80, 5))
-    plt.plot(delta[:, 0])
-    plt.title("Delta Modulation Channel 0")
-
-    plt.figure(figsize=(80, 5))
-    plt.plot(delta[:, 1])
-    plt.title("Delta Modulation Channel 1")
-
-    # Apply quantization
+    # delta = delta_modulation(data)
+    # plt.figure(figsize=(80, 5))
+    # plt.plot(delta[:, 0])
+    # plt.title("Delta Modulation Channel 0")
+    #
+    # plt.figure(figsize=(80, 5))
+    # plt.plot(delta[:, 1])
+    # plt.title("Delta Modulation Channel 1")
+    #
+    # # Apply quantization
     quantized_data_2bit = quantization(data, 2)
     quantized_data_4bit = quantization(data, 4)
     quantized_data_8bit = quantization(data, 8)
-
+    #
     plt.figure()
     plt.plot(quantized_data_2bit[:, 0])
     plt.title("2-bit Quantization Channel 1")
-
+    #
     plt.figure()
     plt.plot(quantized_data_2bit[:, 1])
     plt.title("2-bit Quantization Channel 2")
-
+    #
     plt.figure()
     plt.plot(quantized_data_4bit[:, 0])
     plt.title("4-bit Quantization Channel 1")
-
+    #
     plt.figure()
     plt.plot(quantized_data_4bit[:, 1])
     plt.title("4-bit Quantization Channel 2")
@@ -184,13 +184,13 @@ def main():
     plt.figure()
     plt.plot(quantized_data_8bit[:, 1])
     plt.title("8-bit Quantization Channel 2")
-
-    # Speed up X2
-    save_wav('speed_up.wav', data, sampling_rate * 2)
-    play_audio(data, sampling_rate * 2)
-    plt.figure()
-    plt.plot(data[:, 1])
-    plt.title("speed up X2")
+    #
+    # # Speed up X2
+    # save_wav('speed_up.wav', data, sampling_rate * 2)
+    # play_audio(data, sampling_rate * 2)
+    # plt.figure()
+    # plt.plot(data[:, 1])
+    # plt.title("speed up X2")
     plt.show()
 
 
